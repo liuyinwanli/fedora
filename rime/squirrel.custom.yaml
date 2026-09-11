@@ -1,0 +1,63 @@
+
+patch:
+  app_options:
+    # 终端（macOS）
+    com.apple.Terminal:
+      ascii_mode: false
+      ascii_punct: true
+    # VSCode
+    com.microsoft.VSCode:
+      ascii_mode: false
+      ascii_punct: false
+    # 如果使用 iterm2
+    com.googlecode.iterm2:
+      ascii_mode: false
+      ascii_punct: true
+
+  show_notifications_when: appropriate
+
+  preset_color_schemes:
+    NightMountain:
+      back_color: 0x241113 # 暗蓝紫
+      border_color: 0x241113 # 龙睛鱼紫
+      text_color: 0xC9DEB9 # 竹篁绿
+      hilited_text_color: 0xF2F7EE # 月白
+      hilited_back_color: 0x241113 # 暗蓝紫
+      hilited_candidate_text_color: 0xF2F7EE # 月白
+      hilited_candidate_back_color: 0x241113 # 暗蓝紫
+      hilited_candidate_label_color: 0xF2F7EE # 月白
+      hilited_comment_text_color: 0xF2F7EE # 月白
+      candidate_text_color: 0xC2C357 # 石绿
+      label_color: 0xC2C357 # 石绿
+      comment_text_color: 0xC2C357 # 石绿
+
+
+  style:
+
+    candidate_list_layout: stacked
+    text_orientation: horizontal  
+    candidate_format: '[label]  [candidate]  [comment]'
+
+    font_face: PingFang SC
+    font_point: 18 #主字体字号
+
+    label_font_face: PingFang SC
+    label_font_point: 14 #标号字号
+
+    comment_font_face: PingFang SC
+    comment_font_point: 18 #滤镜字号
+    
+
+
+    corner_radius: 3
+    border_height: 5                             # 窗口上下高度，大于圆角半径才生效
+    border_width: 5                              # 窗口左右宽度，大于圆角半径才生效 
+    hilited_corner_radius: 1
+    line_spacing: 4
+    hilite_spacing: 2
+    spacing: 8
+    color_scheme: NightMountain
+    color_scheme_dark: NightMountain
+    
+    inline_candidate: false
+    inline_preedit: true #鼠须管开嵌入在QQ上可能会有点问题，这里可改为 true 关闭嵌入模式

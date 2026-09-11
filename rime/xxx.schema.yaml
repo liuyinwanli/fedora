@@ -1,0 +1,101 @@
+schema:
+  author:
+    - {}
+  dependencies:
+
+  description: |
+    虎码
+  name: 虎码
+  schema_id: xxx
+  version: "1.0.0.custom.1751189906"
+switches:
+  - name: ascii_mode
+    reset: 0
+    # states: [汉,A]
+  - name: full_shape
+    reset: 0
+  - name: traditional
+    states: [ 简, 繁 ]
+  - name: ascii_punct
+    # reset: 0
+    states: ["。","."]
+engine:
+  processors:
+    # - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor #计算
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - table_translator
+    - lua_translator@xdate
+    - history_translator@history
+  filters:
+    - simplifier@traditional
+    - uniquifier
+
+history:
+  input: "`"
+  size: 1
+  initial_quality: 1
+speller:
+  max_code_length: 4
+  auto_clear: max_length
+  alphabet: "zyxwvutsrqponmlkjihgfedcba/`"
+  initials: "`/abcdefghijklmnopqrstuvwxyz"
+
+  auto_select: true
+  auto_select_pattern: "^[a-z]{1,4}$" #自动上屏规则  对 [;] 引导的编码实行候选唯一自动上屏
+  # algebra:
+    # - derive/^([a-z]{3})[a-z]$/$1/
+translator:
+  dictionary: xxx
+  enable_charset_filter: false
+  enable_sentence: false
+  enable_encoder: false
+  encode_commit_history: false
+  # max_phrase_length: 1
+  enable_user_dict: false
+  prism: xxx
+  enable_completion: true	#
+  enable_correction: false
+  # disable_user_dict_for_patterns:
+  #   - "^[a-z]{1,4}"
+  comment_format:
+    - xlit/abcdefghijklmnopqrstuvwxyz/ABCDEFGHIJKLMNOPQRSTUVWXYZ/
+    - xform/~//
+  preedit_format:
+    - xlit/abcdefghijklmnopqrstuvwxyz/ABCDEFGHIJKLMNOPQRSTUVWXYZ/
+xdate:
+  date: /date            # 日期： 2022-11-29
+  time: /time            # 时间： 18:13
+  week: /week            # 星期： 星期二
+  datetime: /dt
+  timestamp: /ts  # 时间戳： 1669716794
+punctuator:
+  import_preset: symbols
+key_binder:
+  import_preset: default
+
+recognizer:
+  import_preset: default
+  patterns:
+    punct: '^/(\d+|\w+)$'
+
+traditional:
+  option_name: traditional
+  opencc_config: s2tw.json  # s2t.json | s2hk.json | s2tw.json | s2twp.json
+  tips: all               # 转换提示: all 都显示 | char 仅单字显示 | none 不显示。
+  comment_format:
+    # - xform/(^.*$)/[$1]/
+  tags: [ abc, number, gregorian_to_lunar ]  # 限制在对应 tag，不对其他如反查的内容做简繁转换
