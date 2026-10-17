@@ -17,6 +17,11 @@ helix_config()
         echo "复制helix配置文件成功"
     fi
 }
+clash_config()
+{
+    touch ~/.profile  && printf "\nexport http_proxy=socks5://127.0.0.1:7897\nexport https_proxy=socks5://127.0.0.1:7897\nexport all_proxy=socks5://127.0.0.1:7897"  >>  ~/.profile
+
+}
 sway_config()
 {
     mkdir -p "$HOME/.config/sway/"
@@ -171,6 +176,7 @@ clash_install()
         echo "clash 已存在"
     else
         sudo dnf copr enable oak443/clash-verge-rev && sudo dnf install -y clash-verge-rev
+        clash_config
     fi
 }
 yazi_install()
@@ -381,7 +387,7 @@ do
             done
             ;;
         3)
-            select _ in "sway" "fish" "foot" "helix" "git" "ssh" 
+            select _ in "sway" "fish" "foot" "helix" "git" "ssh"
             do
                 case "$REPLY" in
                     1)
