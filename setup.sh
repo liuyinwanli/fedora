@@ -51,6 +51,16 @@ git_config()
         git config --global user.email "liuyinwanli@outlook.com"
         git config --global core.editor hx
         git config --global init.defaultBranch main
+        # git config --global http.proxy socks5://127.0.0.1:7897
+        # git config --global https.proxy socks5://127.0.0.1:7897
+        # 取消 git 的代理相关设置
+        # git config –global –unset http.proxy
+        # 取消 git 的代理相关设置
+        # git config –global –unset https.proxy
+        # 设置 git 的代理相关设置
+        # git config –global http.proxy http://127.0.0.1:1080
+        # git config –global https.proxy http://127.0.0.1:1080
+        # 或者使用 sock5
         ssh -T git@github.com
     fi
 }
@@ -230,7 +240,7 @@ rust_install()
     else
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
         # source "$HOME/.cargo/env.fish"
-        mkdir "$HOME/.cargo/"
+        mkdir -p "$HOME/.cargo/"
         cp "$SCRIPT_DIR/cargo/config.toml" "$HOME/.cargo/config.toml"
 
     fi
